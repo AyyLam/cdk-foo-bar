@@ -1,6 +1,6 @@
 import { expect as expectCDK, haveResource } from '@aws-cdk/assert';
 import * as cdk from '@aws-cdk/core';
-import * as CdkWorkshop from '../src/cdk-workshop-stack';
+import * as CdkWorkshop from '../src';
 
 test('SQS Queue Created', () => {
   const app = new cdk.App();
