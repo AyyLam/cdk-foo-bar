@@ -29,10 +29,6 @@ const project = new AwsCdkConstructLibrary({
     '@aws-cdk/aws-sqs',
     '@aws-cdk/aws-sns-subscriptions',
   ],
-  // python: {
-  //   distName: 'foo-bar-construct',
-  //   module: 'foo-bar-construct',
-  // }
 });
 
 project.synth();
