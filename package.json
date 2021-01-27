@@ -120,7 +120,12 @@
   "stability": "stable",
   "jsii": {
     "outdir": "dist",
-    "targets": {},
+    "targets": {
+      "python": {
+        "distName": "foo-bar-construct",
+        "module": "foo-bar-construct"
+      }
+    },
     "tsc": {
       "outDir": "lib",
       "rootDir": "src"
