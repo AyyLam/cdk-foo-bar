@@ -31,7 +31,7 @@ const project = new AwsCdkConstructLibrary({
   ],
   python: {
     distName: 'foo-bar-construct',
-    module: 'foo-bar-construct'
+    module: 'foo-bar-construct',
   }
 });
 
