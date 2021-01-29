@@ -1,0 +1,133 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree"
+      },
+      "FooBar": {
+        "id": "FooBar",
+        "path": "FooBar",
+        "children": {
+          "CdkWorkshopQueue": {
+            "id": "CdkWorkshopQueue",
+            "path": "FooBar/CdkWorkshopQueue",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FooBar/CdkWorkshopQueue/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SQS::Queue",
+                  "aws:cdk:cloudformation:props": {
+                    "visibilityTimeout": 300
+                  }
+                }
+              },
+              "Policy": {
+                "id": "Policy",
+                "path": "FooBar/CdkWorkshopQueue/Policy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "FooBar/CdkWorkshopQueue/Policy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SQS::QueuePolicy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sqs:SendMessage",
+                              "Condition": {
+                                "ArnEquals": {
+                                  "aws:SourceArn": {
+                                    "Ref": "CdkWorkshopTopicD368A42F"
+                                  }
+                                }
+                              },
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "sns.amazonaws.com"
+                              },
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "CdkWorkshopQueue50D9D426",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "queues": [
+                          {
+                            "Ref": "CdkWorkshopQueue50D9D426"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "FooBarCdkWorkshopTopicE2EEC0D0": {
+                "id": "FooBarCdkWorkshopTopicE2EEC0D0",
+                "path": "FooBar/CdkWorkshopQueue/FooBarCdkWorkshopTopicE2EEC0D0",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "FooBar/CdkWorkshopQueue/FooBarCdkWorkshopTopicE2EEC0D0/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SNS::Subscription",
+                      "aws:cdk:cloudformation:props": {
+                        "protocol": "sqs",
+                        "topicArn": {
+                          "Ref": "CdkWorkshopTopicD368A42F"
+                        },
+                        "endpoint": {
+                          "Fn::GetAtt": [
+                            "CdkWorkshopQueue50D9D426",
+                            "Arn"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "CdkWorkshopTopic": {
+            "id": "CdkWorkshopTopic",
+            "path": "FooBar/CdkWorkshopTopic",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FooBar/CdkWorkshopTopic/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                  "aws:cdk:cloudformation:props": {}
+                }
+              }
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "FooBar/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "FooBar/CDKMetadata/Default"
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "FooBar/CDKMetadata/Condition"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
